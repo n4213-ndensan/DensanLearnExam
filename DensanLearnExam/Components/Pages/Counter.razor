@@ -1,0 +1,30 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status" style="color: @GetColor()">Current count: @currentCount</p>
+
+<RadzenButton class="btn btn-primary" Click="IncrementCount">Click me</RadzenButton>
+<RadzenButton class="btn btn-primary" Click="DecrementCount">Click me (Decrement)</RadzenButton>
+
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void DecrementCount()
+    {
+        currentCount--;
+    }
+
+    private string GetColor()
+    {
+        return (currentCount >= 1 && currentCount <= 5) ? "red" : "black";
+    }
+}

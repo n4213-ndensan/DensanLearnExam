@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<br />
+<RadzenButton Click="@(() => NavigationManager.NavigateTo("/todoregister"))" Text="追加" />
+<div>
+    <RadzenDataGrid TItem="MyToDo" Data="myToDoes">
+        <Columns>
+            <RadzenDataGridColumn Title="題名" Property="@nameof(MyToDo.Title)"></RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="期限" Property="@nameof(MyToDo.DueDate)">
+                <Template>
+                    @context.DueDate.ToShortDateString()
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="状態" Property="@nameof(MyToDo.State)"></RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="内容" Property="@nameof(MyToDo.Description)">
+                <Template>
+                    @context.Description[..GetEndOfFirstLine(context.Description)]
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</div>

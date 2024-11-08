@@ -1,0 +1,31 @@
+﻿@page "/todoregister"
+
+<h3>ToDo登録画面</h3>
+
+<RadzenTemplateForm Data="@_myToDo" FormName="ToDoRegister" Submit=@((MyToDo e) =>RegisterAsync(e))>
+    <RadzenFieldset>
+        <div>
+            <RadzenLabel Text="題名"></RadzenLabel>
+            <RadzenTextBox Name="Title" @bind-Value="@_myToDo.Title"></RadzenTextBox>
+            <RadzenDataAnnotationValidator Component="Title" ></RadzenDataAnnotationValidator>
+        </div>
+        <div>
+            <RadzenLabel Text="期限"></RadzenLabel>
+            <RadzenDatePicker TValue="DateTime" @bind-Value="@_myToDo.DueDate"></RadzenDatePicker>
+        </div>
+        <div>
+            <RadzenLabel Text="状態"></RadzenLabel>
+            <RadzenDropDown TValue="ToDoState" Data="Enum.GetValues(typeof(ToDoState)).Cast<ToDoState>()" @bind-Value="@_myToDo.State">
+                <Template Context="items">
+                    @items
+                </Template>
+            </RadzenDropDown>
+        </div>
+        <div>
+            <RadzenLabel Text="内容"></RadzenLabel>
+            <RadzenTextArea @bind-Value="@_myToDo.Description"></RadzenTextArea>
+        </div>
+        <RadzenButton Text="登録" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary"></RadzenButton>
+        <RadzenButton Text="キャンセル" ButtonStyle="ButtonStyle.Secondary" Click="NavigateToHome"></RadzenButton>
+    </RadzenFieldset>
+</RadzenTemplateForm>
