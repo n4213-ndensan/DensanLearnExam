@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddRadzenComponents();
-// IStateProvider<MyToDo>の実装をToDoServiceに設定し、Scopedサービスとして登録
+// IStateProvider<MyToDo>縺ｮ螳溯｣�繧探oDoService縺ｫ險ｭ螳壹＠縲ヾcoped繧ｵ繝ｼ繝薙せ縺ｨ縺励※逋ｻ骭ｲ
 builder.Services.AddScoped<IStateProvider<MyToDo>, ToDoService>();
-// Scopedサービスをユーザースコープにするため、CascadingValueとして登録
+// inject莉･螟悶�ｮ譁ｹ豕輔〒蜿励￠蜿悶ｋ繧ｵ繝ｳ繝励Ν縺ｨ縺励※縲，ascadingValue縺ｫ逋ｻ骭ｲ
 builder.Services.AddCascadingValue(sp => sp.GetRequiredService<IStateProvider<MyToDo>>());
 
 var app = builder.Build();
